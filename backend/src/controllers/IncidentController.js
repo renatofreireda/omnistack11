@@ -39,15 +39,7 @@ module.exports = {
 			.select('ong_id')
 			.first();
 
-		const incident_null = await connection('incidents')
-			.where('id', id)
-			.select('ong_id');
-
-		if (incident_null.ong_id == null) { 
-			return response.status(401).json({error: "Id enviado não localizado"  });
-		}		
-		
-		if (incident.ong_id != ong_id) { 
+		if (incident.ong_id !== ong_id) { 
 			return response.status(401).json({error: "Operação não permitida"  });
 		}	
 
